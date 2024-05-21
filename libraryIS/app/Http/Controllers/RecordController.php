@@ -13,6 +13,9 @@ class RecordController extends Controller
     public function index()
     {
         //
+        $records = Record::all();
+
+        return view('record.index',['records'=>$records]);
     }
 
     /**
