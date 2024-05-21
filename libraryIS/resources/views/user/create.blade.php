@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <h1>Add New Volunteer</h1>
         <form action="{{route('user.store')}}" method="post">
             @csrf
             @method('post')

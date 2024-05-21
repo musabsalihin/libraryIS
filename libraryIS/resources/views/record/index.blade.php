@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        <h1>List of all records</h1>
-        <table>
+    <div class="container">
+        <h1>List of all Records</h1>
+
+        <a href="{{route('record.create')}}">Add New Borrowing Record</a>
+        <table class="table">
             <tr>
                 <td>ID</td>
                 <td>Borrower's Name</td>
@@ -14,14 +16,14 @@
             @foreach($records as $record)
                 <tr>
                     <td>{{$record->id}}</td>
-                    <td>{{$record->user->name}}</td>
-                    <td>{{$record->book->name}}</td>
+                    <td>{{$record->member->name}}</td>
+                    <td>{{$record->book->title}}</td>
                     <td>{{$record->borrow_date}}</td>
                     <td>{{$record->return_date}}</td>
                     <td>
-                        <a href="{{route('record.show')}}">Show</a>
-                        <a href="{{route('record.edit')}}">Edit</a>
-                        <form method="post" action="{{route('record.delete')}}">
+                        <a href="{{route('record.show', $record)}}">Show</a>
+                        <a href="{{route('record.edit', $record)}}">Edit</a>
+                        <form method="post" action="{{route('record.destroy',$record)}}">
                             <input type="submit" value="Delete">
                         </form>
                     </td>

@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
+    <div class="container">
         <h1>List of all Books</h1>
-        <table>
+        <a href="{{route('book.create')}}">Add New Book</a>
+        <table class="table">
             <tr>
                 <td>ID</td>
                 <td>Title</td>
@@ -12,6 +13,7 @@
                 <td>Published Year</td>
                 <td>Category</td>
                 <td>Status</td>
+                <td>Action</td>
             </tr>
             @foreach($books as $book)
                 <tr>
@@ -23,9 +25,9 @@
                     <td>{{$book->category}}</td>
                     <td>{{$book->status}}</td>
                     <td>
-                        <a href="{{route('book.show')}}">Show</a>
-                        <a href="{{route('book.edit')}}">Edit</a>
-                        <form method="post" action="{{route('book.delete')}}">
+                        <a href="{{route('book.show', $book)}}">Show</a>
+                        <a href="{{route('book.edit', $book)}}">Edit</a>
+                        <form method="post" action="{{route('book.destroy', $book)}}">
                             <input type="submit" value="Delete">
                         </form>
                     </td>

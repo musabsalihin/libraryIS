@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        <h1>List of all members</h1>
-        <table>
+    <div class="container">
+        <h1>List of All Library Members</h1>
+        <a href="{{route('member.create')}}">Add New Library Member</a>
+        <table class="table">
             <tr>
                 <td>ID</td>
                 <td>Name</td>
@@ -19,9 +20,9 @@
                     <td>{{$member->address}}</td>
                     <td>{{$member->contact}}</td>
                     <td>
-                        <a href="{{route('member.show')}}">Show</a>
-                        <a href="{{route('member.edit')}}">Edit</a>
-                        <form method="post" action="{{route('member.delete')}}">
+                        <a href="{{route('member.show', $member)}}">Show</a>
+                        <a href="{{route('member.edit', $member)}}">Edit</a>
+                        <form method="post" action="{{route('member.destroy', $member)}}">
                             <input type="submit" value="Delete">
                         </form>
                     </td>

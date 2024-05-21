@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form action="{{route('book.store')}}" method="post">
+        <form action="{{route('member.store')}}" method="post">
             @csrf
             @method('post')
             <table class="table">

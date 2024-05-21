@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class BookController extends Controller
 {
@@ -32,6 +31,20 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $data = [
+            'title' => $request['title'],
+            'author' => $request['author'],
+            'publisher' => $request['publisher'],
+            'year' => $request['year'],
+            'category' => $request['category'],
+            'status' => 'Available',
+        ];
+
+
+        Book::create($data);
+
+        return redirect(route('book.index'));
+
 
     }
 
@@ -40,7 +53,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('book.show', ['book' => $book]);
     }
 
     /**

@@ -14,7 +14,7 @@ class MemberController extends Controller
     {
         //
         $members = Member::all();
-        
+
         return view('member.index', ['members' => $members]);
     }
 
@@ -32,7 +32,16 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'name' => $request['name'],
+            'ic' => $request['ic'],
+            'address' => $request['address'],
+            'contact' => $request['contact'],
+        ];
+
+        Member::create($data);
+
+        return  redirect(route('member.index'));
     }
 
     /**
@@ -40,7 +49,7 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        //
+        return view('member.show', ['member'=>$member]);
     }
 
     /**

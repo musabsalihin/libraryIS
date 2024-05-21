@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Record;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
 {
@@ -32,7 +33,23 @@ class RecordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+          'member_id' => $request['member_id'],
+          'book_id' => $request['book_id'],
+          'borrow_date' => $request['borrow_date'],
+          'return_date' => null,
+          'user_id' => $request['user_id'],
+        ];
+
+//        dd($data);
+
+        $record = Record::create($data);
+
+        $record->book->update([
+            'status' => 'Borrowed'
+        ]);
+
+        return redirect(route('record.index'));
     }
 
     /**
@@ -40,7 +57,7 @@ class RecordController extends Controller
      */
     public function show(Record $record)
     {
-        //
+        return view('record.show',['record'=>$record]);
     }
 
     /**

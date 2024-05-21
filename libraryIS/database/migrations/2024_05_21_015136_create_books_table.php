@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('publisher');
             $table->string('year');
             $table->string('category');
+            $table->string('status');
             $table->timestamps();
         });
     }

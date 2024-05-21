@@ -31,15 +31,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt('Uni10fy'),
+            'role' => $request['role'],
+        ];
+
+        User::create($data);
+
+        return redirect(route('user.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('user.show', ['user' => $user]);
     }
 
     /**

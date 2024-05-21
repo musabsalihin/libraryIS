@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-        <form action="{{route('book.store')}}" method="post">
+        <h1>Add Borrowing Record</h1>
+        <form action="{{route('record.store')}}" method="post">
             @csrf
             @method('post')
             <table class="table">
@@ -23,7 +24,8 @@
                         Issuer
                     </td>
                     <td>
-                        <input type="text" name="user_id">
+                        <p>{{ Auth::user()->name }}</p>
+                        <input class="invisible" type="text" name="user_id" value="{{ Auth::user()->id }}">
                     </td>
                 </tr>
             </table>

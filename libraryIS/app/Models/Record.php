@@ -18,14 +18,15 @@ class Record extends Model
         'book_id',
         'borrow_date',
         'return_date',
+        'user_id',
     ];
 
     public function member():belongsTo{
         return $this->belongsTo(Member::class);
     }
 
-    public function books():hasOne{
-        return $this->hasOne(Book::class);
+    public function book():belongsTo{
+        return $this->belongsTo(Book::class);
     }
 
     public function inCharge():belongsTo{
