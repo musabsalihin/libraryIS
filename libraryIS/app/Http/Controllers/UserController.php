@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +12,7 @@ class MemberController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -20,8 +20,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
-        return view('member.create');
+        return view('user.create');
     }
 
     /**
@@ -35,7 +34,7 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Member $member)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +42,7 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Member $member)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +50,7 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +58,7 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Member $member)
+    public function destroy(string $id)
     {
         //
     }
