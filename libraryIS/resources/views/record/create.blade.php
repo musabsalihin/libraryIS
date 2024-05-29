@@ -10,9 +10,9 @@
                 <tr>
                     <th>Membership ID</th>
                     <td>
-                        <input type="text" id="memberInput" onchange="member_input()">
-                        <select id="memberDD" name="member_id">
-                            <option value="0" >Select a Member or Enter a valid Member ID</option>
+                        <input type="text" id="memberInput" onchange="member_input()" required>
+                        <select id="memberDD" name="member_id" onchange="member_select()" required>
+                            <option value="0">Select a Member or Enter a valid Member ID</option>
                             @foreach($members as $member)
                                 <option value="{{$member->id}}">{{$member->name}}</option>
                             @endforeach
@@ -25,12 +25,16 @@
                                 if (memberInput.value !== "") {
                                     memberDD.setAttribute('disabled', '');
                                     memberDD.value = memberInput.value;
-                                    if(memberDD.value === "" || memberInput.value === ""){
+                                    if (memberDD.value === "" || memberInput.value === "") {
                                         memberDD.removeAttribute('disabled');
                                         memberDD.value = 0;
                                     }
 
                                 }
+                            }
+
+                            function member_select() {
+                                memberInput.setAttribute('disabled', '');
                             }
                         </script>
                     </td>
@@ -38,8 +42,8 @@
                 <tr>
                     <th>Book ID</th>
                     <td>
-                        <input type="text" id="bookInput" name="book_id" onchange="book_input()">
-                        <select id="bookDD" name="book_id">
+                        <input type="text" id="bookInput" name="book_id" onchange="book_input()" required>
+                        <select id="bookDD" name="book_id" onchange="book_select()">
                             <option value="0">Select a Book or Enter a valid Book ID</option>
                             @foreach($books as $book)
                                 <option value="{{$book->id}}">{{$book->title}}</option>
@@ -53,11 +57,17 @@
                                 if (bookInput.value !== "") {
                                     bookDD.setAttribute('disabled', '');
                                     bookDD.value = bookInput.value;
-                                    if(bookDD.value === ""){
+                                    if (bookDD.value === "") {
                                         bookDD.removeAttribute('disabled');
                                         bookDD.value = 0;
                                     }
 
+                                }
+                            }
+
+                            function book_select() {
+                                if (bookDD.value !== "") {
+                                    bookInput.setAttribute('disabled', '');
                                 }
                             }
                         </script>
@@ -65,7 +75,7 @@
                 </tr>
                 <tr>
                     <th>Borrow Date</th>
-                    <td><input type="date" name="borrow_date"></td>
+                    <td><input type="date" name="borrow_date" required></td>
                 </tr>
                 <tr>
                     <th>

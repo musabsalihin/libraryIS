@@ -4,6 +4,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,7 @@ Route::resource('book', BookController::class);
 Route::resource('record', RecordController::class);
 
 Route::put('record/{record}/return', [RecordController::class, 'return'] )->name('record.return');
+Route::get('search', [SearchController::class, 'index'])->name('search.index');
+Route::get('search/record', [SearchController::class, 'search'])->name('search.record');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

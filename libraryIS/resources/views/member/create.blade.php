@@ -8,19 +8,19 @@
             <table class="table">
                 <tr>
                     <td>Name</td>
-                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="name" required></td>
                 </tr>
                 <tr>
                     <td>Identity Card Number</td>
-                    <td><input type="text" name="ic"></td>
+                    <td><input type="text" name="ic" required></td>
                 </tr>
                 <tr>
                     <td>Address</td>
-                    <td><input type="text" name="address"></td>
+                    <td><input type="text" name="address" required></td>
                 </tr>
                 <tr>
                     <td>Contact Information</td>
-                    <td><input type="text" name="contact"></td>
+                    <td><input type="text" name="contact" required></td>
                 </tr>
             </table>
             <input type="submit" value="Register New Member">

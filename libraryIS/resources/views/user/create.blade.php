@@ -9,16 +9,16 @@
             <table class="table">
                 <tr>
                     <td>Name</td>
-                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="name" required></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input type="text" name="email"></td>
+                    <td><input type="text" name="email" required></td>
                 </tr>
                 <tr>
                     <td>Role</td>
                     <td>
-                        <select name="role">
+                        <select name="role" required>
                             <option value="Volunteer">Volunteer</option>
                             <option value="Supervisor">Supervisor</option>
                         </select>

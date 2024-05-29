@@ -60,6 +60,7 @@ class RecordController extends Controller
      */
     public function show(Record $record)
     {
+//        dd($record);
         return view('record.show',['record'=>$record]);
     }
 
