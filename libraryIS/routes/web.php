@@ -29,4 +29,6 @@ Route::resource('member', MemberController::class);
 Route::resource('book', BookController::class);
 Route::resource('record', RecordController::class);
 
+Route::put('record/{record}/return', [RecordController::class, 'return'] )->name('record.return');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

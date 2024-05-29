@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Member;
 use App\Models\Record;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +26,9 @@ class RecordController extends Controller
      */
     public function create()
     {
-        //
-        return view('record.create');
+        $members = Member::all();
+        $books = Book::all();
+        return view('record.create' , [ 'members' => $members,'books'=>$books]);
     }
 
     /**
@@ -65,7 +68,7 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
-        //
+        return view('record.edit',['record'=>$record]);
     }
 
     /**
@@ -73,7 +76,31 @@ class RecordController extends Controller
      */
     public function update(Request $request, Record $record)
     {
-        //
+        $data = [
+            'member_id' => $request['member_id'],
+            'book_id' => $request['book_id'],
+            'borrow_date' => $request['borrow_date'],
+        ];
+
+        $record->update($data);
+
+        return redirect(route('record.index'));
+    }
+
+    public function return (Request $request, Record $record){
+
+        $data = [
+            'return_date' => date('Y/m/d'),
+        ];
+
+        $record->update($data);
+        $record->book->update(
+            [
+                'status' => 'Available',
+            ]
+        );
+
+        return redirect(route('record.index'));
     }
 
     /**
@@ -81,6 +108,8 @@ class RecordController extends Controller
      */
     public function destroy(Record $record)
     {
-        //
+        $record->delete();
+
+        return redirect(route('record.index'));
     }
 }

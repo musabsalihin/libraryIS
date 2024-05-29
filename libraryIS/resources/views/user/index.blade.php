@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>List of all users</h1>
+        <h1>List of Volunteers</h1>
         <a href="{{route('user.create')}}">Add New Volunteer</a>
         <table class="table">
             <tr>
@@ -22,6 +22,8 @@
                     <a href="{{route('user.show', $user)}}">Show</a>
                     <a href="{{route('user.edit', $user)}}">Edit</a>
                     <form method="post" action="{{route('user.destroy', $user)}}">
+                        @csrf
+                        @method('delete')
                         <input type="submit" value="Delete">
                     </form>
                 </td>

@@ -21,5 +21,21 @@
                 <td>{{ $member->contact }}</td>
             </tr>
         </table>
+
+        <h2>Borrowing History</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Book Name</th>
+                <th>Borrowing Date</th>
+                <th>Returning Date</th>
+            </tr>
+            @foreach($member->records as $record)
+                <tr>
+                    <td>{{$record->book->title}}</td>
+                    <td>{{$record->borrow_date}}</td>
+                    <td>{{$record->return_date}}</td>
+                </tr>
+            @endforeach
+        </table>
     </div>
 @endsection

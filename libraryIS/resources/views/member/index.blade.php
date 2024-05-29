@@ -23,6 +23,8 @@
                         <a href="{{route('member.show', $member)}}">Show</a>
                         <a href="{{route('member.edit', $member)}}">Edit</a>
                         <form method="post" action="{{route('member.destroy', $member)}}">
+                            @csrf
+                            @method('delete')
                             <input type="submit" value="Delete">
                         </form>
                     </td>

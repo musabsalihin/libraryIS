@@ -24,10 +24,20 @@
                 </tr>
                 <tr>
                     <td>Category</td>
-                    <td><select name="category">
-                            <option>Volunteer</option>
-                            <option>Supervisor</option>
-                        </select></td>
+                    <td>
+                        <select name="category">
+                            <option value="Non-Fiction">Non-Fiction</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Biography">Biography</option>
+                            <option value="Encyclopedia">Encyclopedia</option>
+                            <option value="Journal">Journal</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Satire">Satire</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
             <input type="submit" value="Add New Book">

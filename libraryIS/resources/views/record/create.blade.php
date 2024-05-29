@@ -8,21 +8,69 @@
             @method('post')
             <table class="table">
                 <tr>
-                    <td>Membership ID</td>
-                    <td><input type="text" name="member_id"></td>
+                    <th>Membership ID</th>
+                    <td>
+                        <input type="text" id="memberInput" onchange="member_input()">
+                        <select id="memberDD" name="member_id">
+                            <option value="0" >Select a Member or Enter a valid Member ID</option>
+                            @foreach($members as $member)
+                                <option value="{{$member->id}}">{{$member->name}}</option>
+                            @endforeach
+                        </select>
+                        <script>
+                            memberInput = document.getElementById('memberInput');
+                            memberDD = document.getElementById('memberDD');
+
+                            function member_input() {
+                                if (memberInput.value !== "") {
+                                    memberDD.setAttribute('disabled', '');
+                                    memberDD.value = memberInput.value;
+                                    if(memberDD.value === "" || memberInput.value === ""){
+                                        memberDD.removeAttribute('disabled');
+                                        memberDD.value = 0;
+                                    }
+
+                                }
+                            }
+                        </script>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Book ID</td>
-                    <td><input type="text" name="book_id"></td>
+                    <th>Book ID</th>
+                    <td>
+                        <input type="text" id="bookInput" name="book_id" onchange="book_input()">
+                        <select id="bookDD" name="book_id">
+                            <option value="0">Select a Book or Enter a valid Book ID</option>
+                            @foreach($books as $book)
+                                <option value="{{$book->id}}">{{$book->title}}</option>
+                            @endforeach
+                        </select>
+                        <script>
+                            bookInput = document.getElementById('bookInput');
+                            bookDD = document.getElementById('bookDD');
+
+                            function book_input() {
+                                if (bookInput.value !== "") {
+                                    bookDD.setAttribute('disabled', '');
+                                    bookDD.value = bookInput.value;
+                                    if(bookDD.value === ""){
+                                        bookDD.removeAttribute('disabled');
+                                        bookDD.value = 0;
+                                    }
+
+                                }
+                            }
+                        </script>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Borrow Date</td>
+                    <th>Borrow Date</th>
                     <td><input type="date" name="borrow_date"></td>
                 </tr>
                 <tr>
-                    <td>
+                    <th>
                         Issuer
-                    </td>
+                    </th>
                     <td>
                         <p>{{ Auth::user()->name }}</p>
                         <input class="invisible" type="text" name="user_id" value="{{ Auth::user()->id }}">

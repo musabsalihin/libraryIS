@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        if(!\Illuminate\Support\Facades\Gate::allows('isSupervisor', Auth::user())){
+            abort(403);
+        }
+
         $users = User::all();
 
         return view('user.index', ['users' => $users]);
@@ -23,6 +30,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        if(!\Illuminate\Support\Facades\Gate::allows('isSupervisor', Auth::user())){
+            abort(403);
+        }
+
         return view('user.create');
     }
 
@@ -31,6 +42,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if(!\Illuminate\Support\Facades\Gate::allows('isSupervisor', Auth::user())){
+            abort(403);
+        }
+
         $data = [
             'name' => $request['name'],
             'email' => $request['email'],
@@ -48,30 +63,55 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show', ['user' => $user]);
+        if(!\Illuminate\Support\Facades\Gate::allows('isSupervisor', Auth::user())){
+            abort(403);
+        }
+
+        return view('user.show', ['user' => $user ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        if(!\Illuminate\Support\Facades\Gate::allows('isSupervisor', Auth::user())){
+            abort(403);
+        }
+
+        return view('user.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if(!\Illuminate\Support\Facades\Gate::allows('isSupervisor', Auth::user())){
+            abort(403);
+        }
+
+        $data = [
+            'name' => $request['name'],
+            'email' => $request['email'],
+        ];
+
+        $user->update($data);
+
+        return redirect(route('user.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        if(!\Illuminate\Support\Facades\Gate::allows('isSupervisor', Auth::user())){
+            abort(403);
+        }
+
+        $user->delete();
+
+        return redirect(route('user.index'));
     }
 }

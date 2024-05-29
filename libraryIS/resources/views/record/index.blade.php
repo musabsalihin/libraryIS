@@ -7,14 +7,27 @@
         <a href="{{route('record.create')}}">Add New Borrowing Record</a>
         <table class="table">
             <tr>
-                <td>ID</td>
-                <td>Borrower's Name</td>
-                <td>Book's Name</td>
-                <td>Borrowing Date</td>
-                <td>Returning Date</td>
+                <th>Return Book</th>
+                <th>ID</th>
+                <th>Borrower's Name</th>
+                <th>Book's Name</th>
+                <th>Borrowing Date</th>
+                <th>Returning Date</th>
             </tr>
             @foreach($records as $record)
                 <tr>
+                    <td>
+                        @if($record->return_date == null)
+                            <form method="post" action="{{route('record.return', $record)}}">
+                                @csrf
+                                @method('put')
+                                <input type="submit" value="Return">
+                            </form>
+                        @else
+                            Returned
+                        @endif
+
+                    </td>
                     <td>{{$record->id}}</td>
                     <td>{{$record->member->name}}</td>
                     <td>{{$record->book->title}}</td>
@@ -24,6 +37,8 @@
                         <a href="{{route('record.show', $record)}}">Show</a>
                         <a href="{{route('record.edit', $record)}}">Edit</a>
                         <form method="post" action="{{route('record.destroy',$record)}}">
+                            @csrf
+                            @method('delete')
                             <input type="submit" value="Delete">
                         </form>
                     </td>

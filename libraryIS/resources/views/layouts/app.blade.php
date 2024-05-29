@@ -23,12 +23,6 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
-            <div class="nav-pills">
-                <a class="nav-item m-3" href="{{route('user.index')}}">Volunteers</a>
-                <a class="nav-item m-3" href="{{route('member.index')}}">Members</a>
-                <a class="nav-item m-3" href="{{route('book.index')}}">Books</a>
-                <a class="nav-item m-3" href="{{route('record.index')}}">Records</a>
-            </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -38,9 +32,20 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
+                @guest
+                    <ul></ul>
+                @else
+                    <ul class="navbar-nav me-auto">
+                        @if(Auth::user()->role === 'Supervisor')
+                            <li class="nav-item"><a class="nav-link" href="{{route('user.index')}}">Volunteers</a></li>
+                        @endif
+                        <li class="nav-item"><a class="nav-link" href="{{route('member.index')}}">Members</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('book.index')}}">Books</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('record.index')}}">Records</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('search.index')}}">Search</a></li>
 
-                </ul>
+                    </ul>
+                @endguest
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">

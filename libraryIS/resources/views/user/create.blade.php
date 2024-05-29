@@ -17,10 +17,12 @@
                 </tr>
                 <tr>
                     <td>Role</td>
-                    <td><select name="role">
-                            <option>Volunteer</option>
-                            <option>Supervisor</option>
-                        </select></td>
+                    <td>
+                        <select name="role">
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Supervisor">Supervisor</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
             <input type="submit" value="Add Account">
