@@ -1,36 +1,44 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="">
-        <h1>List of All Library Members</h1>
-        <a class="btn btn-warning" href="{{route('member.create')}}">Add New Library Member</a>
-        <table class="table table-hover">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Identity Card Number</th>
-                <th>Address</th>
-                <th>Contact Information</th>
-                <th></th>
-            </tr>
-            @foreach($members as $member)
+    <div class="card">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-dark shadow-dark border-radius-lg pt-4 pb-3">
+                <h4 class="text-white text-capitalize ps-3">List of All Library Members</h4>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <a class="btn btn-warning" href="{{route('member.create')}}">Add New Library Member</a>
+            <table class="table table-hover">
                 <tr>
-                    <td>{{$member->id}}</td>
-                    <td>{{$member->name}}</td>
-                    <td>{{$member->ic}}</td>
-                    <td>{{$member->address}}</td>
-                    <td>{{$member->contact}}</td>
-                    <td>
-                        <a class="btn btn-primary my-sm-1" href="{{route('member.show', $member)}}">Show</a>
-                        <a class="btn btn-dark my-sm-1" href="{{route('member.edit', $member)}}">Edit</a>
-                        <button type="button" class="btn btn-danger my-sm-1" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" data-book="{{$member}}">
-                            Delete
-                        </button>
-                    </td>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Identity Card Number</th>
+                    <th>Address</th>
+                    <th>Contact Information</th>
+                    <th></th>
                 </tr>
-            @endforeach
-        </table>
+                @foreach($members as $member)
+                    <tr>
+                        <td>{{$member->id}}</td>
+                        <td>{{$member->name}}</td>
+                        <td>{{$member->ic}}</td>
+                        <td>{{$member->address}}</td>
+                        <td>{{$member->contact}}</td>
+                        <td>
+                            <a class="btn btn-primary my-sm-1" href="{{route('member.show', $member)}}">Show</a>
+                            <a class="btn btn-dark my-sm-1" href="{{route('member.edit', $member)}}">Edit</a>
+                            <button type="button" class="btn btn-danger my-sm-1" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" data-book="{{$member}}">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+
     </div>
     <script>
         $('#exampleModal').on('show.bs.modal', function (e) {

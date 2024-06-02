@@ -114,4 +114,12 @@ class UserController extends Controller
 
         return redirect(route('user.index'));
     }
+
+    public function password(Request $request,User $user){
+
+        $user->update(['password' => bcrypt($request['password'])]);
+
+        return redirect(route('profile.show'));
+
+    }
 }

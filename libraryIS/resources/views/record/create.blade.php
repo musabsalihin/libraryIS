@@ -10,13 +10,15 @@
                 <tr>
                     <th>Membership ID</th>
                     <td>
-                        <input type="text" id="memberInput" onchange="member_input()" required>
-                        <select id="memberDD" name="member_id" onchange="member_select()" required>
-                            <option value="0">Select a Member or Enter a valid Member ID</option>
-                            @foreach($members as $member)
-                                <option value="{{$member->id}}">{{$member->name}}</option>
-                            @endforeach
-                        </select>
+                        <div class="input-group input-group-outline w-md-75">
+                            <input class="form-control" type="text" id="memberInput" onchange="member_input()" required>
+                            <select class="form-control" id="memberDD" name="member_id" onchange="member_select()" required>
+                                <option value="0">Select a Member or Enter a valid Member ID</option>
+                                @foreach($members as $member)
+                                    <option value="{{$member->id}}">{{$member->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <script>
                             memberInput = document.getElementById('memberInput');
                             memberDD = document.getElementById('memberDD');
@@ -26,7 +28,7 @@
                                     memberDD.setAttribute('disabled', '');
                                     memberDD.value = memberInput.value;
                                 }
-                                if (memberDD.value === "" || memberInput.value === "") {
+                                if (memberDD.value === "0" || memberInput.value === "0") {
                                     memberDD.removeAttribute('disabled');
                                     memberDD.value = 0;
 
@@ -39,7 +41,7 @@
                                     memberInput.value = memberDD.value;
                                     memberInput.setAttribute('disabled', '');
                                 }
-                                if (memberDD.value == 0) {
+                                if (memberDD.value === '0' || memberInput.value === '0') {
                                     memberInput.removeAttribute('disabled');
                                 }
                             }
@@ -49,23 +51,26 @@
                 <tr>
                     <th>Book ID</th>
                     <td>
-                        <input type="text" id="bookInput" name="" onchange="book_input()" required>
-                        <select id="bookDD" name="book_id" onchange="book_select()">
+                        <div class="input-group input-group-outline w-md-75">
+
+                        <input class="form-control" type="text" id="bookInput" name="" onchange="book_input()" required>
+                        <select class="form-control" id="bookDD" name="book_id" onchange="book_select()">
                             <option value="0">Select a Book or Enter a valid Book ID</option>
                             @foreach($books as $book)
                                 <option value="{{$book->id}}">{{$book->title}}</option>
                             @endforeach
                         </select>
+                        </div>
                         <script>
                             bookInput = document.getElementById('bookInput');
                             bookDD = document.getElementById('bookDD');
 
                             function book_input() {
-                                if (bookInput.value !== "") {
+                                if (bookInput.value !== "" ) {
                                     bookDD.setAttribute('disabled', '');
                                     bookDD.value = bookInput.value;
                                 }
-                                if (bookDD.value === "") {
+                                if (bookDD.value === "0" || bookInput.value === '0') {
                                     bookDD.removeAttribute('disabled');
                                     bookDD.value = 0;
 
@@ -77,7 +82,7 @@
                                     bookInput.value = bookDD.value;
                                     bookInput.setAttribute('disabled', '');
                                 }
-                                if (bookDD.value == 0) {
+                                if (bookDD.value === '0') {
                                     bookInput.removeAttribute('disabled');
                                 }
                             }
@@ -87,7 +92,7 @@
                 <tr>
                     <th>Borrow Date</th>
                     <td>
-                        <div class="input-group input-group-outline">
+                        <div class="input-group input-group-outline w-md-75">
                             <input class="form-control" type="date" name="borrow_date" required>
                         </div>
                     </td>

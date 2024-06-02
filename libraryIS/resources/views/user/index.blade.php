@@ -1,34 +1,40 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="">
-        <h1>List of Volunteers</h1>
-        <a class="btn btn-warning" href="{{route('user.create')}}">Add New Volunteer</a>
-        <table class="table table-hover">
-            <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Role</td>
-                <td>Action</td>
-            </tr>
-            @foreach($users as $user)
+    <div class="card">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-dark shadow-dark border-radius-lg pt-4 pb-3">
+                <h4 class="text-white text-capitalize ps-3">List of Volunteers</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-warning" href="{{route('user.create')}}">Add New Volunteer</a>
+            <table class="table table-hover">
                 <tr>
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->role}}</td>
-                    <td>
-                        <a class="btn btn-primary my-sm-1" href="{{route('user.show', $user)}}">Show</a>
-                        <a class="btn btn-dark my-sm-1" href="{{route('user.edit', $user)}}">Edit</a>
-                        <button type="button" class="btn btn-danger my-sm-1" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" data-record="{{$user}}">
-                            Delete
-                        </button>
-                    </td>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Role</td>
+                    <td>Action</td>
                 </tr>
-            @endforeach
-        </table>
+                @foreach($users as $user)
+                    <tr>
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->role}}</td>
+                        <td>
+                            <a class="btn btn-primary my-sm-1" href="{{route('user.show', $user)}}">Show</a>
+                            <a class="btn btn-dark my-sm-1" href="{{route('user.edit', $user)}}">Edit</a>
+                            <button type="button" class="btn btn-danger my-sm-1" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" data-record="{{$user}}">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
     </div>
     <script>
         $('#exampleModal').on('show.bs.modal', function (e) {
