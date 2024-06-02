@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Library Management System</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -21,14 +21,8 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                Library Management System
             </a>
-            <div class="nav-pills">
-                <a class="nav-item m-3" href="{{route('user.index')}}">Volunteers</a>
-                <a class="nav-item m-3" href="{{route('member.index')}}">Members</a>
-                <a class="nav-item m-3" href="{{route('book.index')}}">Books</a>
-                <a class="nav-item m-3" href="{{route('record.index')}}">Records</a>
-            </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -38,9 +32,20 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
+                @guest
+                    <ul></ul>
+                @else
+                    <ul class="navbar-nav me-auto">
+                        @if(Auth::user()->role === 'Supervisor')
+                            <li class="nav-item"><a class="nav-link" href="{{route('user.index')}}">Volunteers</a></li>
+                        @endif
+                        <li class="nav-item"><a class="nav-link" href="{{route('member.index')}}">Members</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('book.index')}}">Books</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('record.index')}}">Records</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('search.index')}}">Search</a></li>
 
-                </ul>
+                    </ul>
+                @endguest
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
@@ -58,6 +63,9 @@
                             </li>
                         @endif
                     @else
+                        <li>
+                            <a class="btn btn-warning mx-md-4 d-none d-lg-block" href="{{route('record.create')}}">Add New Borrowing Record</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -61,7 +61,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('book.edit', ['book' => $book]);
     }
 
     /**
@@ -69,7 +69,17 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $data = [
+            'title' => $request['title'],
+            'author' => $request['author'],
+            'publisher' => $request['publisher'],
+            'year' => $request['year'],
+            'category' => $request['category'],
+        ];
+
+        $book->update($data);
+
+        return redirect(route('book.index'));
     }
 
     /**
@@ -77,6 +87,8 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+
+        return redirect(route('book.index'));
     }
 }
