@@ -91,4 +91,10 @@ class BookController extends Controller
 
         return redirect(route('book.index'));
     }
+
+    public function filter(){
+        $books = Book::where('status','Available')->get();
+
+        return view('book.index',['books'=>$books]);
+    }
 }

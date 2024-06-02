@@ -33,5 +33,8 @@ Route::resource('record', RecordController::class);
 Route::put('record/{record}/return', [RecordController::class, 'return'] )->name('record.return');
 Route::get('search', [SearchController::class, 'index'])->name('search.index');
 Route::get('search/record', [SearchController::class, 'search'])->name('search.record');
+Route::get('book/filter/available', [BookController::class, 'filter'])->name('book.available');
+Route::view('profile', 'profile.show')->name('profile.show');
+Route::put('profile/password/{user}', [UserController::class, 'password'])->name('user.password');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

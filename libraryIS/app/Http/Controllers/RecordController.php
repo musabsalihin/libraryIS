@@ -69,7 +69,10 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
-        return view('record.edit',['record'=>$record]);
+        $members = Member::all();
+        $books = Book::all();
+
+        return view('record.edit',['record'=>$record,'members'=>$members,'books'=>$books]);
     }
 
     /**
