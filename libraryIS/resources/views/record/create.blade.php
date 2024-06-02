@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="">
         <h1>Add Borrowing Record</h1>
         <form action="{{route('record.store')}}" method="post">
             @csrf
             @method('post')
-            <table class="table">
+            <table class="table w-lg-75">
                 <tr>
                     <th>Membership ID</th>
                     <td>
@@ -25,16 +25,23 @@
                                 if (memberInput.value !== "") {
                                     memberDD.setAttribute('disabled', '');
                                     memberDD.value = memberInput.value;
-                                    if (memberDD.value === "" || memberInput.value === "") {
-                                        memberDD.removeAttribute('disabled');
-                                        memberDD.value = 0;
-                                    }
+                                }
+                                if (memberDD.value === "" || memberInput.value === "") {
+                                    memberDD.removeAttribute('disabled');
+                                    memberDD.value = 0;
 
                                 }
                             }
 
                             function member_select() {
-                                memberInput.setAttribute('disabled', '');
+                                // memberInput.setAttribute('disabled', '');
+                                if (memberDD.value !== 0) {
+                                    memberInput.value = memberDD.value;
+                                    memberInput.setAttribute('disabled', '');
+                                }
+                                if (memberDD.value == 0) {
+                                    memberInput.removeAttribute('disabled');
+                                }
                             }
                         </script>
                     </td>
@@ -42,7 +49,7 @@
                 <tr>
                     <th>Book ID</th>
                     <td>
-                        <input type="text" id="bookInput" name="book_id" onchange="book_input()" required>
+                        <input type="text" id="bookInput" name="" onchange="book_input()" required>
                         <select id="bookDD" name="book_id" onchange="book_select()">
                             <option value="0">Select a Book or Enter a valid Book ID</option>
                             @foreach($books as $book)
@@ -57,17 +64,21 @@
                                 if (bookInput.value !== "") {
                                     bookDD.setAttribute('disabled', '');
                                     bookDD.value = bookInput.value;
-                                    if (bookDD.value === "") {
-                                        bookDD.removeAttribute('disabled');
-                                        bookDD.value = 0;
-                                    }
+                                }
+                                if (bookDD.value === "") {
+                                    bookDD.removeAttribute('disabled');
+                                    bookDD.value = 0;
 
                                 }
                             }
 
                             function book_select() {
-                                if (bookDD.value !== "") {
+                                if (bookDD.value !== 0) {
+                                    bookInput.value = bookDD.value;
                                     bookInput.setAttribute('disabled', '');
+                                }
+                                if (bookDD.value == 0) {
+                                    bookInput.removeAttribute('disabled');
                                 }
                             }
                         </script>
@@ -75,7 +86,11 @@
                 </tr>
                 <tr>
                     <th>Borrow Date</th>
-                    <td><input type="date" name="borrow_date" required></td>
+                    <td>
+                        <div class="input-group input-group-outline">
+                            <input class="form-control" type="date" name="borrow_date" required>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <th>
@@ -87,7 +102,7 @@
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="Add New Record">
+            <input class="btn btn-dark" type="submit" value="Add New Record">
         </form>
     </div>
 @endsection

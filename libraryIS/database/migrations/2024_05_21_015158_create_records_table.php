@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained();
-            $table->foreignId('book_id')->constrained();
+            $table->foreignId('member_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('book_id')->constrained()->cascadeOnDelete()->cascadeOnDelete();
             $table->date('borrow_date');
             $table->date('return_date')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnDelete();
             $table->timestamps();
         });
     }

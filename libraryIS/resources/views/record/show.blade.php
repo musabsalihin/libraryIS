@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="">
         <h1>Book Details</h1>
-        <table class="table table-striped w-50">
+        <table class="table table-striped w-lg-75">
             <tr>
                 <th>Borrower's Name</th>
                 <td>{{ $record->member->name }}</td>

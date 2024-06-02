@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="">
         <h1>Edit Record Details</h1>
         <form method="post" action="{{route('record.update', $record)}}">
             @csrf
             @method('put')
-            <table class="table">
+            <table class="table w-lg-75">
                 <tr>
                     <th>Borrower's Name</th>
                     <td>
@@ -30,7 +30,7 @@
                     <td><input type="date" value="{{$record->borrow_date}}" name="borrow_date"></td>
                 </tr>
             </table>
-            <input type="submit" value="Update Borrowing Record">
+            <input class="btn btn-dark" type="submit" value="Update Borrowing Record">
         </form>
     </div>
 

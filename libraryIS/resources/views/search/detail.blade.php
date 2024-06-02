@@ -1,10 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="">
+        <h1>Search Result</h1>
         @foreach($record as $r)
 
-            <table class="table table-striped">
+            <table class="table table-striped w-lg-50">
                 <tr>
                     <th>Record ID</th>
                     <td>{{$r->id}}</td>
@@ -25,7 +26,7 @@
             <form action="{{route('record.return', $r)}}" method="post">
                 @csrf
                 @method('put')
-                <input type="submit" value="Return Book">
+                <input class="btn btn-dark" type="submit" value="Return Book">
             </form>
         @endforeach
     </div>

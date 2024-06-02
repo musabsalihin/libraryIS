@@ -1,19 +1,27 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="">
         <h1>Add New Volunteer</h1>
         <form action="{{route('user.store')}}" method="post">
             @csrf
             @method('post')
-            <table class="table">
+            <table class="table w-lg-50">
                 <tr>
                     <td>Name</td>
-                    <td><input type="text" name="name" required></td>
+                    <td>
+                        <div class="input-group input-group-outline">
+                            <input class="form-control" type="text" name="name" required>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input type="text" name="email" required></td>
+                    <td>
+                        <div class="input-group input-group-outline">
+                            <input class="form-control" type="text" name="email" required>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Role</td>
@@ -25,7 +33,7 @@
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="Add Account">
+            <input class="btn btn-dark" type="submit" value="Add Account">
         </form>
     </div>
 @endsection
