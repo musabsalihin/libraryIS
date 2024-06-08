@@ -19,6 +19,10 @@ class SearchController extends Controller
         }
         else{
             $member = Member::firstWhere('ic', $request['keyword']);
+            if($member == null){
+                $record = collect();
+                return view('search.detail', ['record' => $record]);
+            }
             $record = Record::where('member_id', $member->id)->where('return_date', null)->get();
 
         }

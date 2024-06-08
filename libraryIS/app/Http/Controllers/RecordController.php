@@ -18,7 +18,7 @@ class RecordController extends Controller
         //
         $records = Record::all();
 
-        return view('record.index',['records'=>$records]);
+        return view('record.index', ['records' => $records]);
     }
 
     /**
@@ -28,7 +28,7 @@ class RecordController extends Controller
     {
         $members = Member::all();
         $books = Book::all();
-        return view('record.create' , [ 'members' => $members,'books'=>$books]);
+        return view('record.create', ['members' => $members, 'books' => $books]);
     }
 
     /**
@@ -37,11 +37,11 @@ class RecordController extends Controller
     public function store(Request $request)
     {
         $data = [
-          'member_id' => $request['member_id'],
-          'book_id' => $request['book_id'],
-          'borrow_date' => $request['borrow_date'],
-          'return_date' => null,
-          'user_id' => $request['user_id'],
+            'member_id' => $request['member_id'],
+            'book_id' => $request['book_id'],
+            'borrow_date' => $request['borrow_date'],
+            'return_date' => null,
+            'user_id' => $request['user_id'],
         ];
 
 //        dd($data);
@@ -61,7 +61,7 @@ class RecordController extends Controller
     public function show(Record $record)
     {
 //        dd($record);
-        return view('record.show',['record'=>$record]);
+        return view('record.show', ['record' => $record]);
     }
 
     /**
@@ -72,7 +72,7 @@ class RecordController extends Controller
         $members = Member::all();
         $books = Book::all();
 
-        return view('record.edit',['record'=>$record,'members'=>$members,'books'=>$books]);
+        return view('record.edit', ['record' => $record, 'members' => $members, 'books' => $books]);
     }
 
     /**
@@ -80,18 +80,42 @@ class RecordController extends Controller
      */
     public function update(Request $request, Record $record)
     {
+        $record->book->update([
+            'status' => 'Available'
+        ]);
+
+
         $data = [
             'member_id' => $request['member_id'],
             'book_id' => $request['book_id'],
             'borrow_date' => $request['borrow_date'],
+            'return_date' => $request['return_date'],
         ];
 
         $record->update($data);
 
+        $book = $record->book;
+
+//        $record->save();
+        $this->check($record, $book);
+//
+//        dd($record->book);
+
         return redirect(route('record.index'));
     }
 
-    public function return (Request $request, Record $record){
+    private function check(Record $record, Book $book){
+//        dd($record->book);
+        if ($record->return_date == null) {
+//            dd($record->refresh()->book);
+            $record->refresh()->book->update([
+                'status' => 'Borrowed'
+            ]);
+        }
+    }
+
+    public function return(Request $request, Record $record)
+    {
 
         $data = [
             'return_date' => date('Y/m/d'),
@@ -112,6 +136,11 @@ class RecordController extends Controller
      */
     public function destroy(Record $record)
     {
+        if ($record->return_date == null) {
+            $record->book->update([
+                'status' => 'Available'
+            ]);
+        }
         $record->delete();
 
         return redirect(route('record.index'));

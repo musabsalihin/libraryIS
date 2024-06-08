@@ -3,6 +3,13 @@
 @section('content')
     <div class="">
         <h1>Search Result</h1>
+
+
+        @if($record->isEmpty())
+            <h6>Record cannot be found</h6>
+            <a href="{{route('search.index')}}">Go back to Search</a>
+        @endif
+
         @foreach($record as $r)
 
             <table class="table table-striped w-lg-50">

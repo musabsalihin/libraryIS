@@ -11,7 +11,7 @@
                     <td>Title</td>
                     <td>
                         <div class="input-group input-group-outline">
-                            <input class="form-control" type="text" name="title">
+                            <input class="form-control" type="text" name="title" required>
                         </div>
                     </td>
                 </tr>
@@ -19,7 +19,7 @@
                     <td>Author Name</td>
                     <td>
                         <div class="input-group input-group-outline">
-                            <input class="form-control" type="text" name="author">
+                            <input class="form-control" type="text" name="author" required>
                         </div>
                     </td>
                 </tr>
@@ -27,7 +27,7 @@
                     <td>Publisher Name</td>
                     <td>
                         <div class="input-group input-group-outline">
-                            <input class="form-control" type="text" name="publisher">
+                            <input class="form-control" type="text" name="publisher" required>
                         </div>
                     </td>
                 </tr>
@@ -35,7 +35,7 @@
                     <td>Published Year</td>
                     <td>
                         <div class="input-group input-group-outline">
-                            <input class="form-control" type="text" name="year">
+                            <input class="form-control" type="text" name="year" required>
                         </div>
                     </td>
                 </tr>
@@ -43,7 +43,7 @@
                     <td>Category</td>
                     <td>
                         <div class="input-group input-group-outline">
-                            <select class="form-control" name="category">
+                            <select class="form-control" name="category" required>
                                 <option value="Non-Fiction">Non-Fiction</option>
                                 <option value="Fiction">Fiction</option>
                                 <option value="Biography">Biography</option>

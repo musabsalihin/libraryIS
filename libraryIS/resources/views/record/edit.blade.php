@@ -105,6 +105,14 @@
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <th>Return Date</th>
+                    <td>
+                        <div class="input-group input-group-outline w-md-75">
+                            <input class="form-control" type="date" name="return_date" min="{{$record->borrow_date}}" value="{{$record->return_date}}">
+                        </div>
+                    </td>
+                </tr>
             </table>
             <input class="btn btn-dark" type="submit" value="Update Borrowing Record">
         </form>
