@@ -80,9 +80,11 @@ class RecordController extends Controller
      */
     public function update(Request $request, Record $record)
     {
-        $record->book->update([
-            'status' => 'Available'
-        ]);
+        if ($record->return_date == null) {
+            $record->book->update([
+                'status' => 'Available'
+            ]);
+        }
 
 
         $data = [
@@ -104,7 +106,8 @@ class RecordController extends Controller
         return redirect(route('record.index'));
     }
 
-    private function check(Record $record, Book $book){
+    private function check(Record $record, Book $book)
+    {
 //        dd($record->book);
         if ($record->return_date == null) {
 //            dd($record->refresh()->book);
