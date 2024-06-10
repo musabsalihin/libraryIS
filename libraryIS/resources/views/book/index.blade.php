@@ -26,9 +26,12 @@
                     <th>Status</th>
                     <th></th>
                 </tr>
+                <?php
+                $i=0;
+                ?>
                 @foreach($books as $book)
                     <tr>
-                        <td>{{$book->id}}</td>
+                        <td>{{++$i}}</td>
                         <td>{{$book->title}}</td>
                         <td>{{$book->author}}</td>
                         <td>{{$book->publisher}}</td>
@@ -46,6 +49,7 @@
                     </tr>
                 @endforeach
             </table>
+            {{$books->links()}}
         </div>
     </div>
     <script>

@@ -25,7 +25,7 @@ class Record extends Model
         return $this->belongsTo(Member::class);
     }
 
-    public function book():belongsTo{
+    public function book():belongsToa{
         return $this->belongsTo(Book::class);
     }
 

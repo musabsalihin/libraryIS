@@ -26,10 +26,12 @@
                 <tr>
                     <td>Role</td>
                     <td>
-                        <select name="role" required>
-                            <option value="Volunteer">Volunteer</option>
-                            <option value="Supervisor">Supervisor</option>
-                        </select>
+                        <div class="input-group input-group-outline">
+                            <select class="form-control" name="role" required>
+                                <option value="Volunteer">Volunteer</option>
+                                <option value="Supervisor">Supervisor</option>
+                            </select>
+                        </div>
                     </td>
                 </tr>
             </table>

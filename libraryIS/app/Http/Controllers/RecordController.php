@@ -27,7 +27,7 @@ class RecordController extends Controller
     public function create()
     {
         $members = Member::all();
-        $books = Book::all();
+        $books = Book::where('status', '=', 'Available')->get();
         return view('record.create', ['members' => $members, 'books' => $books]);
     }
 

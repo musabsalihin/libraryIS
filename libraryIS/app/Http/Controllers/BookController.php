@@ -12,7 +12,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+        $books = Book::paginate(5);
 
         return view('book.index',['books'=>$books]);
     }
@@ -93,7 +93,7 @@ class BookController extends Controller
     }
 
     public function filter(){
-        $books = Book::where('status','Available')->get();
+        $books = Book::where('status','Available')->paginate(5);
 
         return view('book.index',['books'=>$books]);
     }

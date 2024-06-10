@@ -9,17 +9,26 @@
         </div>
         <div class="card-body">
             <a class="btn btn-warning" href="{{route('record.create')}}">Add New Borrowing Record</a>
+            <h3>Pending Record</h3>
             <table class="table table-hover">
                 <tr>
                     <th class="text-center">Return Book</th>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Borrower's Name</th>
                     <th>Book's Name</th>
                     <th>Borrowing Date</th>
                     <th>Returning Date</th>
-                    <th></th>
                 </tr>
+                <?php
+                $i = 0;
+                ?>
                 @foreach($records as $record)
+                        <?php
+                        $i++;
+                        ?>
+                    @if($record->return_date != null)
+                        @continue
+                    @endif
                     <tr>
                         <td class="text-center align-content-center">
                             @if($record->return_date == null)
@@ -33,7 +42,7 @@
                             @endif
 
                         </td>
-                        <td>{{$record->id}}</td>
+                        <td>{{$i}}</td>
                         <td>{{$record->member->name}}</td>
                         <td>{{$record->book->title}}</td>
                         <td>{{$record->borrow_date}}</td>
@@ -50,6 +59,59 @@
                 @endforeach
             </table>
         </div>
+        <div class="card-body">
+            <h3>Completed Record</h3>
+            <table class="table table-hover">
+                <tr>
+                    <th class="text-center">Return Book</th>
+                    <th>No</th>
+                    <th>Borrower's Name</th>
+                    <th>Book's Name</th>
+                    <th>Borrowing Date</th>
+                    <th>Returning Date</th>
+                    <th></th>
+                </tr>
+                <?php
+                $i = 0;
+                ?>
+                @foreach($records as $record)
+                        <?php
+                        $i++;
+                        ?>
+                    @if($record->return_date == null)
+                        @continue
+                    @endif
+                    <tr>
+                        <td class="text-center align-content-center">
+                            @if($record->return_date == null)
+                                <form method="post" action="{{route('record.return', $record)}}">
+                                    @csrf
+                                    @method('put')
+                                    <input class="btn btn-info" type="submit" value="Return">
+                                </form>
+                            @else
+                                <span class="badge bg-success">Returned</span>
+                            @endif
+
+                        </td>
+                        <td>{{$i}}</td>
+                        <td>{{$record->member->name}}</td>
+                        <td>{{$record->book->title}}</td>
+                        <td>{{$record->borrow_date}}</td>
+                        <td>{{$record->return_date}}</td>
+                        <td>
+                            <a class="btn btn-primary my-sm-1" href="{{route('record.show', $record)}}">Show</a>
+                            <a class="btn btn-dark my-sm-1" href="{{route('record.edit', $record)}}">Edit</a>
+                            <button type="button" class="btn btn-danger my-sm-1" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" data-record="{{$record}}">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+
     </div>
     <script>
         $('#exampleModal').on('show.bs.modal', function (e) {
@@ -72,7 +134,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        Are you sure you want to delete this record record?
+                        Are you sure you want to delete this record?
                     </div>
                     <div class="modal-footer">
                         <form method="post" action="{{route('record.destroy', $record)}}">

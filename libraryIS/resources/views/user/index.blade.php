@@ -17,9 +17,15 @@
                     <td>Role</td>
                     <td>Action</td>
                 </tr>
+                <?php
+                $i=0;
+                ?>
                 @foreach($users as $user)
+                    @if($user->role === 'Supervisor')
+                        @continue
+                    @endif
                     <tr>
-                        <td>{{$user->id}}</td>
+                        <td>{{++$i}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->role}}</td>
@@ -43,7 +49,7 @@
 
         })
     </script>
-    @if(isset($member))
+    @if(isset($user))
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">

@@ -12,16 +12,19 @@
             <a class="btn btn-warning" href="{{route('member.create')}}">Add New Library Member</a>
             <table class="table table-hover">
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Name</th>
                     <th>Identity Card Number</th>
                     <th>Address</th>
                     <th>Contact Information</th>
                     <th></th>
                 </tr>
+                <?php
+                $i=0;
+                ?>
                 @foreach($members as $member)
                     <tr>
-                        <td>{{$member->id}}</td>
+                        <td>{{++$i}}</td>
                         <td>{{$member->name}}</td>
                         <td>{{$member->ic}}</td>
                         <td>{{$member->address}}</td>

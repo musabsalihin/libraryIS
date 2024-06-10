@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Library Management System
+        Library Information System
     </title>
 
 
@@ -62,7 +62,7 @@
         <a class="navbar-brand m-0" href="{{route('home')}}">
             {{--            <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">--}}
             {{--            <i class="material-icons opacity-100 align-self-center">local_library</i>--}}
-            <span class="ms-1 font-weight-bold text-dark text-4xl">Library MS</span>
+            <span class="ms-1 font-weight-bold text-dark text-4xl">Library IS</span>
         </a>
     </div>
 
@@ -156,18 +156,18 @@
                     </li>
                 @endif
 
-                @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link text-dark " href="{{ route('register') }}">
+{{--                @if (Route::has('register'))--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link text-dark " href="{{ route('register') }}">--}}
 
-                            <div class="text-dark text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="material-icons opacity-10">assignment</i>
-                            </div>
+{{--                            <div class="text-dark text-center me-2 d-flex align-items-center justify-content-center">--}}
+{{--                                <i class="material-icons opacity-10">assignment</i>--}}
+{{--                            </div>--}}
 
-                            <span class="nav-link-text ms-1">Register</span>
-                        </a>
-                    </li>
-                @endif
+{{--                            <span class="nav-link-text ms-1">Register</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
             @else
                 <li class="nav-item">
                     <a class="nav-link text-dark " href="{{ route('profile.show') }}">

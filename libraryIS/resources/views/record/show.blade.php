@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="">
-        <h1>Book Details</h1>
+        <h1>Record Details</h1>
         <table class="table table-striped w-lg-75">
             <tr>
                 <th>Borrower's Name</th>
